@@ -3,7 +3,8 @@ let openScreen = document.getElementById("opening-screen")
 
 // cards array holds all cards
 let card = document.getElementsByClassName("card");
-let cards = [...card];
+let allCards = [...card];
+let cards;
 
 // deck of all cards in game
 const deck = document.getElementById("card-deck");
@@ -20,8 +21,11 @@ let matchedCard = document.getElementsByClassName("match");
  // array for opened cards
 var openedCards = [];
 
+let layout;
 var firstPlayerScore = 0;
 var secondPlayerScore = 0;
+var firstPlayerTotalScore = 0;
+var secondPlayerTotalScore = 0;
 var playersTurn = 0;
 var player1turn = true;
 var player2turn = false;
@@ -50,7 +54,18 @@ function shuffle(array) {
 document.body.onload = openingScreen();
 
 function openingScreen(){
+    startDeck();
     openScreen;
+}
+
+function startDeck(){
+    layout = document.getElementById("game-select").value;
+    if(layout == 12){
+        cards = allCards.slice(0,12);
+    }
+    else{
+        cards = allCards;
+    }
 }
 
 function sumbitGame(){
@@ -58,14 +73,17 @@ function sumbitGame(){
     secondPlayer = document.getElementById("lplayer").value;
     document.getElementById("opening-screenId").style.display = "none";
     document.getElementById("containerId").style.display = "flex";
+    startDeck();
+    turn.textContent = turn.textContent + firstPlayer;
     startGame(firstPlayer, secondPlayer);
 }
 
 // @description function to start a new play 
 function startGame(name1, name2){
+    document.getElementById("firstPlayerWins").textContent = name1+" total wins: "+firstPlayerTotalScore;
+    document.getElementById("secondPlayerWins").textContent = name2+" total wins: "+secondPlayerTotalScore;
     document.getElementById("firstPlayer").textContent = name1+": "+firstPlayerScore;
     document.getElementById("secondPlayer").textContent = name2+": "+secondPlayerScore;
-    turn.textContent = turn.textContent + name1;
     // empty the openCards array
     openedCards = [];
 
@@ -105,7 +123,7 @@ function cardOpen() {
             matched();
             matchCounter++;
             console.log(matchCounter);
-            if(matchCounter == 8){
+            if(matchCounter == (cards.length)/2){
                 congratulations();
             }
         } else {
@@ -172,12 +190,14 @@ function enable(){
 
 // @description congratulations when all cards match, show modal and moves, time and rating
 function congratulations(){
-    if(matchCounter == 8){
+    if(matchCounter == (cards.length)/2){
         if(firstPlayerScore > secondPlayerScore){
             document.getElementById("winner-name").innerHTML = firstPlayer +" Congratulations you're the winner 🎉🎉";
+            firstPlayerTotalScore++;
         }
         else if(firstPlayerScore < secondPlayerScore){
             document.getElementById("winner-name").innerHTML = secondPlayer +" Congratulations you're the winner 🎉🎉";
+            secondPlayerTotalScore++;
         }
         else{
             document.getElementById("winner-name").innerHTML = "No one wins";
@@ -185,6 +205,9 @@ function congratulations(){
         modal.classList.add("show");
 
         //closeicon on modal
+        matchCounter = 0;
+        firstPlayerScore = 0;
+        secondPlayerScore = 0;
         closeModal();
     };
 }
@@ -199,10 +222,10 @@ function closeModal(){
 
 // @desciption for user to play Again 
 function playAgain(){
-    var name1 = document.getElementById("fplayer").value;
-    var name2 = document.getElementById("lplayer").value;
+    //var name1 = document.getElementById("fplayer").value;
+    //var name2 = document.getElementById("lplayer").value;
     modal.classList.remove("show");
-    startGame(name1, name2);
+    startGame(firstPlayer, secondPlayer);
 }
 
 // loop to add event listeners to each card

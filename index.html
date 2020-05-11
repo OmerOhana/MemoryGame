@@ -17,6 +17,10 @@
             <input type="text" id="fplayer" name="fplayer"><br><br>
             <label for="lname">Second Player:</label>
             <input type="text" id="lplayer" name="lplayer"><br><br>
+            <select id="game-select">
+                <option value="16">4X4</option>
+                <option value="12">3X4</option>
+            </select>
             <input type="button" onclick="sumbitGame()" value="submit">
         </form>
     </div>
@@ -38,8 +42,17 @@
             <li class="card" type="diamond">
                 <i class="fa fa-diamond"></i>
             </li>
+            <li class="card" type="diamond">
+                <i class="fa fa-diamond"></i>
+            </li>
             <li class="card" type="plane">
                 <i class="fa fa-paper-plane-o"></i>
+            </li>
+            <li class="card" type="plane">
+                <i class="fa fa-paper-plane-o"></i>
+            </li>
+            <li class="card match" type="anchor">
+                <i class="fa fa-anchor"></i>
             </li>
             <li class="card match" type="anchor">
                 <i class="fa fa-anchor"></i>
@@ -47,43 +60,39 @@
             <li class="card" type="bolt" >
                 <i class="fa fa-bolt"></i>
             </li>
-            <li class="card" type="cube">
-                <i class="fa fa-cube"></i>
-            </li>
-            <li class="card match" type="anchor">
-                <i class="fa fa-anchor"></i>
-            </li>
-            <li class="card" type="leaf">
-                <i class="fa fa-leaf"></i>
-            </li>
-            <li class="card" type="bicycle">
-                <i class="fa fa-bicycle"></i>
-            </li>
-            <li class="card" type="diamond">
-                <i class="fa fa-diamond"></i>
-            </li>
-            <li class="card" type="bomb">
-                <i class="fa fa-bomb"></i>
-            </li>
-            <li class="card" type="leaf">
-                <i class="fa fa-leaf"></i>
-            </li>
-            <li class="card" type="bomb">
-                <i class="fa fa-bomb"></i>
-            </li>
             <li class="card open show" type="bolt">
                 <i class="fa fa-bolt"></i>
             </li>
-            <li class="card" type="bicycle">
-                <i class="fa fa-bicycle"></i>
-            </li>
-            <li class="card" type="plane">
-                <i class="fa fa-paper-plane-o"></i>
+            <li class="card" type="cube">
+                <i class="fa fa-cube"></i>
             </li>
             <li class="card" type="cube">
                 <i class="fa fa-cube"></i>
             </li>
+            <li class="card" type="leaf">
+                <i class="fa fa-leaf"></i>
+            </li>
+            <li class="card" type="leaf">
+                <i class="fa fa-leaf"></i>
+            </li>
+            <li class="card" type="bicycle">
+                <i class="fa fa-bicycle"></i>
+            </li>
+            <li class="card" type="bicycle">
+                <i class="fa fa-bicycle"></i>
+            </li>
+            <li class="card" type="bomb">
+                <i class="fa fa-bomb"></i>
+            </li>
+            <li class="card" type="bomb">
+                <i class="fa fa-bomb"></i>
+            </li>
         </ul>
+
+        <section class="total-wins">
+            <span id="firstPlayerWins"> player1 </span>
+            <span id="secondPlayerWins"> player2 </span>
+        </section>
 
         <div id="popup1" class="overlay">
             <div class="popup">
