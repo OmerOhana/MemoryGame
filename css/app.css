@@ -39,11 +39,9 @@ h1 {
 	font-family: 'Gloria Hallelujah', cursive;
 }
 
-
 /*
  * Styles for the deck of cards
  */
-
 
 .deck {
 	width: 85%;
@@ -110,11 +108,9 @@ h1 {
 	opacity: 0.9;
 }
 
-
 /*
  * Styles for the Score Panel
  */
-
 
 .score-panel {
 	text-align: left;

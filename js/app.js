@@ -28,7 +28,7 @@ var player2turn = false;
 var turn = document.getElementById("whosTurn");
 var firstPlayer;
 var secondPlayer;
-
+var matchCounter = 0;
 
 // @description shuffles cards
 // @param {array}
@@ -43,10 +43,8 @@ function shuffle(array) {
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
-
     return array;
 };
-
 
 // @description shuffles cards when page is refreshed / loads
 document.body.onload = openingScreen();
@@ -105,6 +103,11 @@ function cardOpen() {
                 document.getElementById("secondPlayer").textContent = secondPlayer +": "+secondPlayerScore; 
             }
             matched();
+            matchCounter++;
+            console.log(matchCounter);
+            if(matchCounter == 8){
+                congratulations();
+            }
         } else {
             updateTurn();
             unmatched();
@@ -169,20 +172,17 @@ function enable(){
 
 // @description congratulations when all cards match, show modal and moves, time and rating
 function congratulations(){
-    if (matchedCard.length == 16){
-        clearInterval(interval);
-        finalTime = timer.innerHTML;
-
-        // show congratulations modal
+    if(matchCounter == 8){
+        if(firstPlayerScore > secondPlayerScore){
+            document.getElementById("winner-name").innerHTML = firstPlayer +" Congratulations you're the winner 🎉🎉";
+        }
+        else if(firstPlayerScore < secondPlayerScore){
+            document.getElementById("winner-name").innerHTML = secondPlayer +" Congratulations you're the winner 🎉🎉";
+        }
+        else{
+            document.getElementById("winner-name").innerHTML = "No one wins";
+        }
         modal.classList.add("show");
-
-        // declare star rating variable
-        var starRating = document.querySelector(".stars").innerHTML;
-
-        //showing move, rating, time on modal
-        document.getElementById("finalMove").innerHTML = moves;
-        document.getElementById("starRating").innerHTML = starRating;
-        document.getElementById("totalTime").innerHTML = finalTime;
 
         //closeicon on modal
         closeModal();
