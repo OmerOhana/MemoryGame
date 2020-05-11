@@ -222,8 +222,9 @@ function closeModal(){
 
 // @desciption for user to play Again 
 function playAgain(){
-    //var name1 = document.getElementById("fplayer").value;
-    //var name2 = document.getElementById("lplayer").value;
+    firstPlayerScore = 0;
+    secondPlayerScore = 0;
+    matchCounter = 0;
     modal.classList.remove("show");
     startGame(firstPlayer, secondPlayer);
 }
