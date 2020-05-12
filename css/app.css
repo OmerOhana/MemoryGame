@@ -24,8 +24,11 @@ body {
 
 .opening-screen {
 	display: flex;
+	padding-top: 20%;
 	text-align:center;
-	margin:auto;
+	flex-direction: column;
+	font-family: Tahoma, Arial, sans-serif;
+	font-weight: bolder;
 }
 
 .container {
@@ -33,10 +36,12 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
+	font-family: Tahoma, Arial, sans-serif;
+	font-weight: bolder;
 }
 
 h1 {
-	font-family: 'Gloria Hallelujah', cursive;
+	font-family: Tahoma, Arial, sans-serif;
 }
 
 /*
@@ -44,23 +49,29 @@ h1 {
  */
 
 .deck {
-	width: 85%;
-	background: #716F71;
+	width: 660px;
+	height: 680px;
+	position: relative;
+	background: rgb(31, 124, 124);
 	padding: 1rem;
 	border-radius: 4px;
-	box-shadow: 8px 9px 26px 0 rgba(46, 61, 73, 0.5);
+	box-shadow: 8px 9px 26px 0 rgba(12, 230, 146, 0.5);
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-around;
+	/* text-align: center; */
 	align-items: center;
-	margin: 0 0 3em;
+	margin: auto;
+	/* margin: 0 0 3em; */
 }
 
 .deck .card {
-	height: 3.7rem;
-	width: 3.7rem;
+	height: 125px;
+	width: 125px;
+	/* height: 3.7rem;
+	width: 3.7rem; */
 	margin: 0.2rem 0.2rem;
-	background: #141214;;
+	background: #080808ec;;
 	font-size: 0;
 	color: #ffffff;
 	border-radius: 5px;
@@ -73,7 +84,7 @@ h1 {
 
 .deck .card.open {
 	transform: rotateY(0);
-	background: #02b3e4;
+	background: #7be402;
 	cursor: default;
 	animation-name: flipInY;
 	-webkit-backface-visibility: visible !important;
@@ -113,41 +124,39 @@ h1 {
  */
 
 .score-panel {
-	text-align: left;
+	width: 660px;
+	/* display: inline-flex; */
+	/* text-align: left; */
 	margin-bottom: 10px;
 }
 
-.score-panel .stars {
-	margin: 0;
-	padding: 0;
-	display: inline-block;
-	margin: 0 5px 0 0;
-}
-
-.score-panel .stars li {
-	list-style: none;
-	display: inline-block;
-}
+ .score-panel #firstPlayer{
+	 /* justify-self: right; */
+	 float: right;
+	 margin-right: 50px;
+	 /* margin: auto; */
+	}
+	
+	.score-panel #secondPlayer{
+		/* margin: auto; */
+		float: right;
+	margin-right: 50px;
+} 
 
 .score-panel .restart {
 	float: right;
 	cursor: pointer;
+	/* margin-left: 100px; */
 }
 
-.fa-star {
-	color: #FFD700;
+.score-panel #whosTurn {
+	/* position: 100,100 ; */
+	float: left;
 }
-
-.timer {
-	display: inline-block;
-	margin: 0 1rem;
-}
-
 
 /*
  * Styles for congratulations modal
  */
-
 
 .overlay {
 	position: fixed;
@@ -174,23 +183,26 @@ h1 {
 	width: 85%;
 	position: relative;
 	transition: all 5s ease-in-out;
-	font-family: 'Gloria Hallelujah', cursive;
+	font-family: Tahoma, Arial, sans-serif;
+	font-weight: bolder; 
 }
   
 .popup h2 {
 	margin-top: 0;
+	text-align: center;
 	color: #333;
 	font-family: Tahoma, Arial, sans-serif;
 }
 
 .popup .close {
 	position: absolute;
-	top: 20px;
-	right: 30px;
+	top: 5px;
+	right: 5px;
 	transition: all 200ms;
-	font-size: 30px;
+	font-size: 40px;
 	font-weight: bold;
 	text-decoration: none;
+	font-family: Tahoma, Arial, sans-serif;
 	color: #333;
 }
 
@@ -217,11 +229,11 @@ h1 {
 #play-again {
 	background-color: #141214;
 	padding: 0.7rem 1rem;
-	font-size: 1.1rem;
+	font-size: 25px;
 	display: block;
 	margin: 0 auto;
 	width: 50%;
-	font-family: 'Gloria Hallelujah', cursive;
+	font-family: Tahoma, Arial, sans-serif;
 	color: #ffffff;
 	border-radius: 5px;
 }
@@ -296,44 +308,3 @@ h1 {
 		transform: scale3d(1, 1, 1);
 	}
 }
-
-
-/****** Media queries
-***************************/
-
-
-@media (max-width: 320px) {
-	.deck {
-		width: 85%;
-	}
-
-	.deck .card {
-		height: 4.7rem;
-		width: 4.7rem;
-	}
-}
-
-
-/* For Tablets and larger screens
-****************/
-
-@media (min-width: 768px) {
-	.container {
-		font-size: 22px;
-	}
-
-	.deck {
-		width: 660px;
-		height: 680px;
-	}
-
-	.deck .card {
-		height: 125px;
-		width: 125px;
-	}
-
-	.popup {
-		width: 60%;
-	}
-}
-
