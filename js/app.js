@@ -109,6 +109,13 @@ var displayCard = function (){
 // @description add opened cards to OpenedCards list and check if cards are match or not
 function cardOpen() {
     openedCards.push(this);
+    
+
+        let cardId1 = openedCards[0].id;
+        let cardId2 = openedCards[openedCards.length-1].id;
+        document.getElementById('card'+cardId1).style.visibility='visible';
+        document.getElementById('card'+cardId2).style.visibility='visible';
+    
     var len = openedCards.length;
     if(len === 2){
         if(openedCards[0].type === openedCards[1].type){
@@ -128,7 +135,14 @@ function cardOpen() {
             }
         } else {
             updateTurn();
+            
             unmatched();
+                setTimeout(() => {
+                    document.getElementById('card'+cardId1).style.visibility='hidden';
+                    document.getElementById('card'+cardId2).style.visibility='hidden';
+    
+                },1000)
+            
         }
     }
 };
@@ -226,6 +240,9 @@ function playAgain(){
     secondPlayerScore = 0;
     matchCounter = 0;
     modal.classList.remove("show");
+    for(var i = 0; i < cards.length; i++){
+        document.getElementById('card'+i).style.visibility='hidden';
+    }
     startGame(firstPlayer, secondPlayer);
 }
 
