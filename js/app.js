@@ -1,42 +1,27 @@
-// opening screen object
 let openScreen = document.getElementById("opening-screen")
-
-// cards array holds all cards
 let card = document.getElementsByClassName("card");
+let matchedCard = document.getElementsByClassName("match");
+let closeicon = document.querySelector(".close");
+let modal = document.getElementById("popup1")
 let allCards = [...card];
-let cards;
+let cards, layout;
 
-// deck of all cards in game
 const deck = document.getElementById("card-deck");
 
-// declaring variable of matchedCards
-let matchedCard = document.getElementsByClassName("match");
-
- // close icon in modal
- let closeicon = document.querySelector(".close");
-
- // declare modal
- let modal = document.getElementById("popup1")
-
- // array for opened cards
 var openedCards = [];
-
-let layout;
 var firstPlayerScore = 0;
 var secondPlayerScore = 0;
 var firstPlayerTotalScore = 0;
 var secondPlayerTotalScore = 0;
+var matchCounter = 0;
 var playersTurn = 0;
 var player1turn = true;
 var player2turn = false;
+var firstPlayer, secondPlayer;
 var turn = document.getElementById("whosTurn");
-var firstPlayer;
-var secondPlayer;
-var matchCounter = 0;
 
-// @description shuffles cards
-// @param {array}
-// @returns shuffledarray
+document.body.onload = openingScreen();
+
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -49,9 +34,6 @@ function shuffle(array) {
     }
     return array;
 };
-
-// @description shuffles cards when page is refreshed / loads
-document.body.onload = openingScreen();
 
 function openingScreen(){
     startDeck();
@@ -69,27 +51,36 @@ function startDeck(){
 }
 
 function sumbitGame(){
-    firstPlayer = document.getElementById("fplayer").value;
-    secondPlayer = document.getElementById("lplayer").value;
-    document.getElementById("opening-screenId").style.display = "none";
-    document.getElementById("containerId").style.display = "flex";
-    startDeck();
-    turn.textContent = turn.textContent + firstPlayer;
-    startGame(firstPlayer, secondPlayer);
+    let promise = new Promise(function(ok, notOk){
+        firstPlayer = document.getElementById("fplayer").value;
+        secondPlayer = document.getElementById("lplayer").value;
+        if((firstPlayer&&secondPlayer) !== ""){
+            ok();
+        }
+        else{
+            notOk();
+        }
+    });
+    promise.then(function(){
+        document.getElementById("opening-screenId").style.display = "none";
+        document.getElementById("containerId").style.display = "flex";
+        startDeck();
+        turn.textContent = turn.textContent + firstPlayer;
+        startGame(firstPlayer, secondPlayer);
+    }).catch(function(){
+        alert("Please fill all the fields");
+    });
 }
 
-// @description function to start a new play 
 function startGame(name1, name2){
     document.getElementById("firstPlayerWins").textContent = name1+" total wins: "+firstPlayerTotalScore;
     document.getElementById("secondPlayerWins").textContent = name2+" total wins: "+secondPlayerTotalScore;
     document.getElementById("firstPlayer").textContent = name1+": "+firstPlayerScore;
     document.getElementById("secondPlayer").textContent = name2+": "+secondPlayerScore;
-    // empty the openCards array
+    
     openedCards = [];
-
-    // shuffle deck
     cards = shuffle(cards);
-    // remove all exisiting classes from each card
+
     for (var i = 0; i < cards.length; i++){
         deck.innerHTML = "";
         [].forEach.call(cards, function(item) {
@@ -99,22 +90,19 @@ function startGame(name1, name2){
     }
 }
 
-// @description toggles open and show class to display cards
 var displayCard = function (){
     this.classList.toggle("open");
     this.classList.toggle("show");
     this.classList.toggle("disabled");
 };
 
-// @description add opened cards to OpenedCards list and check if cards are match or not
 function cardOpen() {
     openedCards.push(this);
-    
 
-        let cardId1 = openedCards[0].id;
-        let cardId2 = openedCards[openedCards.length-1].id;
-        document.getElementById('card'+cardId1).style.visibility='visible';
-        document.getElementById('card'+cardId2).style.visibility='visible';
+    let cardId1 = openedCards[0].id;
+    let cardId2 = openedCards[openedCards.length-1].id;
+    document.getElementById('card'+cardId1).style.visibility='visible';
+    document.getElementById('card'+cardId2).style.visibility='visible';
     
     var len = openedCards.length;
     if(len === 2){
@@ -135,14 +123,12 @@ function cardOpen() {
             }
         } else {
             updateTurn();
-            
             unmatched();
                 setTimeout(() => {
                     document.getElementById('card'+cardId1).style.visibility='hidden';
                     document.getElementById('card'+cardId2).style.visibility='hidden';
     
                 },1000)
-            
         }
     }
 };
@@ -160,7 +146,7 @@ function updateTurn(){
     }
     playersTurn++;
 }
-// @description when cards match
+
 function matched(){
     openedCards[0].classList.add("match", "disabled");
     openedCards[1].classList.add("match", "disabled");
@@ -169,8 +155,6 @@ function matched(){
     openedCards = [];
 }
 
-
-// description when cards don't match
 function unmatched(){
     openedCards[0].classList.add("unmatched");
     openedCards[1].classList.add("unmatched");
@@ -183,16 +167,12 @@ function unmatched(){
     },1100);
 }
 
-
-// @description disable cards temporarily
 function disable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.add('disabled');
     });
 }
 
-
-// @description enable cards and disable matched cards
 function enable(){
     Array.prototype.filter.call(cards, function(card){
         card.classList.remove('disabled');
@@ -202,7 +182,6 @@ function enable(){
     });
 }
 
-// @description congratulations when all cards match, show modal and moves, time and rating
 function congratulations(){
     if(matchCounter == (cards.length)/2){
         if(firstPlayerScore > secondPlayerScore){
@@ -218,7 +197,6 @@ function congratulations(){
         }
         modal.classList.add("show");
 
-        //closeicon on modal
         matchCounter = 0;
         firstPlayerScore = 0;
         secondPlayerScore = 0;
@@ -226,15 +204,29 @@ function congratulations(){
     };
 }
 
-// @description close icon on modal
 function closeModal(){
     closeicon.addEventListener("click", function(e){
         modal.classList.remove("show");
+        saveToLocalStorage();
         startGame();
     });
 }
 
-// @desciption for user to play Again 
+function returnToOpenScreen(){
+    turn.textContent = "Players Turn: ";
+    firstPlayerTotalScore = 0;
+    secondPlayerTotalScore = 0;
+    for(i=0; i < cards.length; i++){
+        document.getElementById('card'+cards[i].id).style.visibility='hidden';
+    }
+    document.getElementById("fplayer").value = "";
+    document.getElementById("lplayer").value = "";
+    document.getElementById("game-select").selectedIndex = "0";
+    document.getElementById("opening-screenId").style.display = "flex";
+    document.getElementById("containerId").style.display = "none";
+    openingScreen();
+}
+
 function playAgain(){
     firstPlayerScore = 0;
     secondPlayerScore = 0;
@@ -243,10 +235,16 @@ function playAgain(){
     for(var i = 0; i < cards.length; i++){
         document.getElementById('card'+i).style.visibility='hidden';
     }
+    saveToLocalStorage();
     startGame(firstPlayer, secondPlayer);
 }
 
-// loop to add event listeners to each card
+function saveToLocalStorage(){
+    var itemToWrite = {"first-player":firstPlayer, "second-player":secondPlayer,
+    "player1-wins": firstPlayerTotalScore, "player2-wins": secondPlayerTotalScore, "deck-size":cards.length};
+    localStorage.setItem("game-details", JSON.stringify(itemToWrite));
+}
+
 for (var i = 0; i < cards.length; i++){
     card = cards[i];
     card.addEventListener("click", displayCard);

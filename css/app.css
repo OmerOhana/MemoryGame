@@ -12,22 +12,49 @@ html,
 body {
 	width: 100%;
 	height: 100%;
-	margin: 0;
+	/* margin: 0;
 	padding: 0;
+	justify-content: center;
+	text-align: center; */
+	
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+  	
+	margin: auto;
 }
 
 body {
-	background: #ffffff;
-	font-family: 'Permanent Marker', cursive;
-	font-size: 16px;
+	/* background: #ffffff; */
+	/* background: #8360c3;  
+	background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);  
+	background: linear-gradient(to right, #2ebf91, #8360c3);  */
+	background-image: url(/pictures/bibigantz.jpg);
+	background-size: cover;
+	font-family: 'Yeseva One', cursive;
+	font-size: 20px;
+	padding-top: 27%;
+}
+
+.form-container {
+	text-align: left;
+}
+
+.select {
+	text-align: center;
 }
 
 .opening-screen {
-	display: flex;
-	padding-top: 20%;
+	/* display: flex; */
 	text-align:center;
+	position: absolute;
+	left: 40%;
+	
+	/* width: 50%; */
+	/* justify-content: center; */
 	flex-direction: column;
-	font-family: Tahoma, Arial, sans-serif;
 	font-weight: bolder;
 }
 
@@ -36,17 +63,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: Tahoma, Arial, sans-serif;
 	font-weight: bolder;
 }
-
-h1 {
-	font-family: Tahoma, Arial, sans-serif;
-}
-
-/*
- * Styles for the deck of cards
- */
 
 .deck {
 	width: 660px;
@@ -119,14 +137,8 @@ h1 {
 	opacity: 0.9;
 }
 
-/*
- * Styles for the Score Panel
- */
-
 .score-panel {
 	width: 660px;
-	/* display: inline-flex; */
-	/* text-align: left; */
 	margin-bottom: 10px;
 }
 

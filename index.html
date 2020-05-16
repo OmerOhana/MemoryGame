@@ -6,22 +6,29 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" >
+    <!-- <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah|Permanent+Marker" > -->
+    <link href="https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&family=Yeseva+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
     <div class="opening-screen" id="opening-screenId">
+        <h1 style="text-align: center;">Kneset memory game</h1>
+        <h2 style="text-align: center;">Enter the players names</h2>
         <form action="" id="gameForm">
-            <label for="fname">First Player:</label>
-            <input type="text" id="fplayer" name="fplayer"><br><br>
-            <label for="lname">Second Player:</label>
-            <input type="text" id="lplayer" name="lplayer"><br><br>
-            <select id="game-select">
-                <option value="16">4X4</option>
-                <option value="12">3X4</option>
-            </select>
-            <input type="button" onclick="sumbitGame()" value="submit">
+            <div class="form-container"> 
+                <label for="fname">First Player:</label>
+                <input type="text" style="margin-left: 21px;" id="fplayer" name="fplayer"><br><br>
+                <label for="lname">Second Player:</label>
+                <input type="text" id="lplayer" name="lplayer"><br><br>
+            </div>
+            <div class="select">
+                <select id="game-select">
+                    <option value="16">4X4</option>
+                    <option value="12">3X4</option>
+                </select>
+                <input type="button" onclick="sumbitGame()" value="START">
+            </div>
         </form>
     </div>
     <div class="container" id="containerId">
@@ -113,7 +120,7 @@
         <div id="popup1" class="overlay">
             <div class="popup">
                 <h2>Game Over!!</h2>
-                <a class="close" href=# >×</a>
+                <a class="close" onclick="returnToOpenScreen()" >×</a>
                 <div class="content-1" id="winner-name"> 
                     
                 </div>
@@ -122,7 +129,6 @@
                 </button>
             </div>
         </div>
-
     </div>
     <script src="js/app.js"></script>
 </body>
