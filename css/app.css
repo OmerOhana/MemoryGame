@@ -12,25 +12,15 @@ html,
 body {
 	width: 100%;
 	height: 100%;
-	/* margin: 0;
-	padding: 0;
-	justify-content: center;
-	text-align: center; */
-	
 	position: absolute;
 	top:0;
 	bottom: 0;
 	left: 0;
 	right: 0;
-  	
 	margin: auto;
 }
 
 body {
-	/* background: #ffffff; */
-	/* background: #8360c3;  
-	background: -webkit-linear-gradient(to right, #2ebf91, #8360c3);  
-	background: linear-gradient(to right, #2ebf91, #8360c3);  */
 	background-image: url(/pictures/bibigantz.jpg);
 	background-size: cover;
 	font-family: 'Yeseva One', cursive;
@@ -49,10 +39,7 @@ body {
 	height: 100%;
 	width: 100%;
 	padding-top: 25%;
-	/* text-align:center; */
-	/* position: absolute; */
-	/* left: 35%; */
-	/* flex-direction: column; */
+	flex-direction: column;
 	font-weight: bolder;
 }
 
@@ -81,8 +68,6 @@ body {
 .deck .card {
 	height: 125px;
 	width: 125px;
-	/* height: 3.7rem;
-	width: 3.7rem; */
 	margin: 0.2rem 0.2rem;
 	background: #080808ec;;
 	font-size: 0;
@@ -142,7 +127,6 @@ body {
 }
 .score-panel {
 	width: 610px;
-	
 	background-color: teal;
 }
 
@@ -162,13 +146,8 @@ body {
 }
 
 .score-panel #whosTurn {
-	/* position: 100,100 ; */
 	float: left;
 }
-
-/*
- * Styles for congratulations modal
- */
 
 .overlay {
 	position: fixed;

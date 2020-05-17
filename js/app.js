@@ -6,8 +6,6 @@ let modal = document.getElementById("popup1")
 let allCards = [...card];
 let cards, layout;
 
-const deck = document.getElementById("card-deck");
-
 var openedCards = [];
 var firstPlayerScore = 0;
 var secondPlayerScore = 0;
@@ -19,6 +17,8 @@ var player1turn = true;
 var player2turn = false;
 var firstPlayer, secondPlayer;
 var turn = document.getElementById("whosTurn");
+
+const deck = document.getElementById("card-deck");
 
 document.body.onload = openingScreen();
 
@@ -117,7 +117,7 @@ function cardOpen() {
             }
             matched();
             matchCounter++;
-            console.log(matchCounter);
+            
             if(matchCounter == (cards.length)/2){
                 congratulations();
             }
@@ -219,11 +219,12 @@ function returnToOpenScreen(){
     for(i=0; i < cards.length; i++){
         document.getElementById('card'+cards[i].id).style.visibility='hidden';
     }
+
     document.getElementById("fplayer").value = "";
     document.getElementById("lplayer").value = "";
-    document.getElementById("game-select").selectedIndex = "0";
-    document.getElementById("opening-screenId").style.display = "flex";
     document.getElementById("containerId").style.display = "none";
+    document.getElementById("opening-screenId").style.display = "flex";
+    document.getElementById("opening-screenId").style.flexDirection = "colomn";
     openingScreen();
 }
 
