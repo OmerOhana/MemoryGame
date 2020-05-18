@@ -223,7 +223,7 @@ function returnToOpenScreen(){
     document.getElementById("fplayer").value = "";
     document.getElementById("lplayer").value = "";
     document.getElementById("containerId").style.display = "none";
-    document.getElementById("opening-screenId").style.display = "flex";
+    document.getElementById("opening-screenId").style.display = "inherit";
     document.getElementById("opening-screenId").style.flexDirection = "colomn";
     openingScreen();
 }
