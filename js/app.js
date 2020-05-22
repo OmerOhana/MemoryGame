@@ -23,14 +23,15 @@ const deck = document.getElementById("card-deck");
 document.body.onload = openingScreen();
 
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length
+    var temp, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
+        temp = array[currentIndex];
         array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+        array[randomIndex] = temp;
     }
     return array;
 };
@@ -46,7 +47,7 @@ function startDeck(){
         cards = allCards.slice(0,12);
     }
     else{
-        cards = allCards;
+        cards = allCards.slice(0,allCards.length);
     }
 }
 
@@ -200,6 +201,7 @@ function congratulations(){
         matchCounter = 0;
         firstPlayerScore = 0;
         secondPlayerScore = 0;
+
         closeModal();
     };
 }
@@ -208,7 +210,6 @@ function closeModal(){
     closeicon.addEventListener("click", function(e){
         modal.classList.remove("show");
         saveToLocalStorage();
-        startGame();
     });
 }
 
@@ -216,6 +217,7 @@ function returnToOpenScreen(){
     turn.textContent = "Players Turn: ";
     firstPlayerTotalScore = 0;
     secondPlayerTotalScore = 0;
+
     for(i=0; i < cards.length; i++){
         document.getElementById('card'+cards[i].id).style.visibility='hidden';
     }

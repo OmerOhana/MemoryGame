@@ -197,10 +197,6 @@ body {
 	color: #333;
 }
 
-.popup .close:hover {
-	color: #E5F720;
-}
-
 .popup .content-1,
 .content-2 {
 	max-height: 30%;
@@ -211,10 +207,6 @@ body {
 .show {
 	visibility: visible !important;
 	opacity: 100 !important;
-}
-
-#starRating li {
-	display: inline-block;
 }
 
 #play-again {
